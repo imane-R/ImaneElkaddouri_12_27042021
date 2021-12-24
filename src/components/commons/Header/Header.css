@@ -1,0 +1,22 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    height: 91px;
+    background-color: #020203;
+    align-items: center;
+}
+.Logo{
+    height: 60px;
+    padding-left: 29px;
+}
+.navgation {
+   list-style-type: none; 
+   display: flex;
+   padding-right: 87px;
+   column-gap: 196px;
+}
+.navgation a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}

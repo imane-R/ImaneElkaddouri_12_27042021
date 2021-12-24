@@ -1,0 +1,19 @@
+aside {
+    width: 117px;
+    background-color: #020203;
+    display: grid;
+    align-content: space-around;
+    height: calc(100vh - 91px);
+}
+aside .icons{
+    display: flex;
+    flex-direction: column;
+    padding: 27px;
+    vertical-align: middle;
+    gap: 20px;
+}
+aside .copiryght {
+    color: #fff;
+    transform: rotate(90deg);
+    font-size: 10px;
+}
