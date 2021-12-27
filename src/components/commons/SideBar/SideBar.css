@@ -4,6 +4,7 @@ aside {
     display: grid;
     align-content: space-around;
     height: calc(100vh - 91px);
+    float: left;
 }
 aside .icons{
     display: flex;
