@@ -2,5 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Roboto:wght@500&display=swap');
 
 .App{
+  position: relative;
   font-family: 'Roboto', sans-serif;
 }

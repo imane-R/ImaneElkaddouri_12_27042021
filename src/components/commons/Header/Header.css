@@ -5,7 +5,7 @@ header{
     background-color: #020203;
     align-items: center;
 }
-.Logo{
+header .Logo{
     height: 60px;
     padding-left: 29px;
 }

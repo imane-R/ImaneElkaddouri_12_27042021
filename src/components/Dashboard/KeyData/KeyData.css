@@ -1,15 +1,26 @@
-.KeyData{
+.KeyData {
     width: 258px;
-    height: 124px;
-    background-color: #FBFBFB;
+    background-color: #fbfbfb;
     display: flex;
-    padding: 32px ;
-    justify-content: space-around;
+    gap: 24px;
+    padding: 32px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
 }
-.KeyData .logo{
+.KeyData .logo {
     width: 60px;
 }
-.KeyData .title{
+.KeyData .title {
     margin-top: 5px;
-    font-size: 11px;
+    font-size: 14px;
+    color: #74798C;
+}
+.KeyData .value {
+    font-size: 20px;
+}
+.KeyData .valueTitle{
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    padding-top: 5px;
 }

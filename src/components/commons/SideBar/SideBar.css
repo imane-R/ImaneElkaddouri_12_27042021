@@ -3,8 +3,10 @@ aside {
     background-color: #020203;
     display: grid;
     align-content: space-around;
-    height: calc(100vh - 91px);
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 89px;
+    height: 100%;
 }
 aside .icons{
     display: flex;

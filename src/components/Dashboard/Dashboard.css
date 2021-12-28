@@ -1,3 +1,8 @@
 .Dashboard{
     padding: 68px 90px 88px 214px;
 }
+.Dashboard .userActivities{
+    margin-top: 71px;
+    display: flex;
+    justify-content: space-between;
+}

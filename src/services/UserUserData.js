@@ -7,27 +7,49 @@ const SERVER = axios.create({
 });
 
 let useGenericInfos = () => {
-    const [data, setData] = useState({});
+    const [user, setUser] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async (id) => {
             try {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}`);
-                setData(response);
+                setUser(response);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData(id);
-    }, []);
+    }, [id]);
 
     return {
-        data
+        user
     };
 }
 
 
 
+let useActivity = () => {
+    const [activity, setActivity] = useState({});
+    const { id } = useParams();
 
-export { useGenericInfos };
+    useEffect(() => {
+        const fetchData = async (id) => {
+            try {
+                const { data: { data: response } } = await SERVER.get(`/user/${id}/activity`);
+                response.sessions = response.sessions.map((session, index) => {
+                    session.index = index + 1;
+                    return session;
+                });
+                setActivity(response);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData(id);
+    }, [id]);
+    return {
+        activity
+    };
+}
+export { useGenericInfos,  useActivity };
