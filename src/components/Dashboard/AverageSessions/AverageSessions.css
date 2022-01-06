@@ -1,0 +1,22 @@
+.AverageSessions{
+    display: flex;
+    flex-direction: column;
+    background-color: #FF0000;
+}
+.custom-line-tooltip{
+    width: 39px;
+    height: 25px;
+    background-color: #ffff;
+    color: #000;
+    font-size: 8px;
+    text-align: center;
+}
+.custom-line-tooltip .labe-line{
+    padding: 7px 5px 3px 5px;
+}
+.averageSessionsDescription{
+    font-size: 14px;
+    width: 147px;
+    color: #fff;
+    padding: 29px 34px 0;
+}

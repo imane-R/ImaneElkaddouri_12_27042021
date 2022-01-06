@@ -2,3 +2,14 @@
     background-color: #FBFBFB;
     padding: 30px;
 }
+.custom-tooltip{
+    width: 39px;
+    height: 63px;
+    color: #fff;
+    font-size: 7px;
+    text-align: center;
+    background-color: #E60000;
+}
+.custom-tooltip .label{
+    padding: 14px 7px 2px;
+}

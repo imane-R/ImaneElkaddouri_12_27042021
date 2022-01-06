@@ -1,6 +1,8 @@
 import './Dashboard.css'
 import { useGenericInfos } from '../../services/UserUserData';
 import { useActivity } from '../../services/UserUserData';
+import { useAverageSessions } from '../../services/UserUserData';
+import { usePerformance } from '../../services/UserUserData';
 import Welcome from './Welcome/Welcome';
 import Calories from './Calories/Calories';
 import Proteines from './Proteines/Proteines';
@@ -8,20 +10,50 @@ import Glucides from './Glucides/Glucides';
 import Lipides from './Lipides/Lipides';
 import Spacer from '../commons/Spacer/Spacer';
 import Activity from './Activity/Activity';
+import AverageSessions from './AverageSessions/AverageSessions';
+import Performance from './Performance/Performance';
+import Score from './Score/Score';
 
 function Dashboard() {
     const { user } = useGenericInfos();
     const { activity } = useActivity();
+    const { averageSessions } = useAverageSessions();
+    const { performance } = usePerformance;
 
     return (
         <div className='Dashboard'>
-            { user && user.userInfos &&
+            {user && user.userInfos &&
                 <Welcome firstName={user.userInfos.firstName} />
             }
+
             <div className='userActivities'>
-                { activity && activity.sessions && 
-                    <Activity data={activity.sessions} /> 
-                }
+                <div className='charts'>
+                    <div className='activities'>
+                        {activity && activity.sessions &&
+                            <Activity data={activity.sessions} />
+                        }
+                    </div>
+                    <Spacer height={24}/>
+                    <div className='averagePerformanceScore'>
+                        <div className='averageSessions'>
+                            {averageSessions && averageSessions.sessions &&
+                                <AverageSessions data={averageSessions.sessions} dayName={averageSessions.sessions.day} />
+                            }
+                        </div>
+                        <div className='performance'>
+                            {performance && performance.data &&
+                                <Performance data={performance.data} kind={performance.data.kind} value={performance.data.value} />
+                            }
+                        </div>
+                        <div className='score'>
+                            {user && user.userInfos &&
+                                <Score  score={user.score}/>
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
                 {user && user.keyData &&
                     <div>
                         <Calories value={user.keyData.calorieCount} />
