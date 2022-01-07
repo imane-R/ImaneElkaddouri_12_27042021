@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from "axios";
-
+import { User, UserInfos, KeyData } from '../model/User';
 const SERVER = axios.create({
     baseURL: 'http://localhost:3000/'
 });
 
-let useGenericInfos = (props) => {
-    const [user, setUser] = useState({});
+let useGenericInfos = () => {
+    let intUser;
+    intUser = new User();
+    intUser.setLoading(true);
+    const [user, setUser] = useState(intUser);
     const { id } = useParams();
     useEffect(() => {
         const fetchData = async (id) => {
             try {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}`);
-                setUser(response);
+                const userInfos = new UserInfos(response.userInfos.firstName, response.userInfos.lastName, response.userInfos.age);
+                const keyData = new KeyData(response.keyData.calorieCount, response.keyData.proteinCount, response.keyData.carbohydrateCount, response.keyData.lipidCount);
+                let userData = new User(response.id, userInfos, response.score || response.todayScore, keyData);
+                setUser(userData);
             } catch (error) {
-                console.error(error);
+                setUser({ hasError: true });
             }
         };
         fetchData(id);
@@ -42,7 +48,7 @@ let useActivity = () => {
                 });
                 setActivity(response);
             } catch (error) {
-                console.error(error);
+                setActivity({ hasError: true });
             }
         };
         fetchData(id);
@@ -66,7 +72,7 @@ let useAverageSessions = () => {
                 });
                 setAverageSessions(response);
             } catch (error) {
-                console.error(error);
+                setAverageSessions({ hasError: true });
             }
         };
         fetchData(id);
@@ -83,9 +89,13 @@ let usePerformance = () => {
         const fetchData = async (id) => {
             try {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}/performance`);
+                response.data = response.data.map((performance) => {
+                    performance.kind = response.kind[performance.kind];
+                    return performance;
+                });
                 setPerformance(response);
             } catch (error) {
-                console.error(error);
+                setPerformance({ hasError: true });
             }
         };
         fetchData(id);

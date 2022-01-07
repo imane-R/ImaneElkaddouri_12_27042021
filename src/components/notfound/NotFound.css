@@ -1,3 +1,13 @@
-.NotFound {
-    height: 100vh
+
+.NotFound .error404{
+    font-size: 288px;
+    text-align: center;
+    color: #E60000;
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+.NotFound .error-message{
+    font-size: 36px;
+    text-align: center;
+    color: #E60000;
 }

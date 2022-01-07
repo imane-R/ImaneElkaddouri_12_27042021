@@ -34,18 +34,18 @@ const CustomizedActiveDot = (props) => {
 const CustomizedCursor = props => {
   const { points, width} = props;
   const { x, y } = points[0];
-  return <Rectangle fill="#000000" opacity="0.198345" x={x} y={y} width={width} height={263} />;
+  return <Rectangle fill="#000000" opacity="0.198345" x={x} y={y} width={width} height={300}  />;
 };
 
 
 function AverageSessions(props) {
   return (
     <div className='AverageSessions'>
-      <LineChart width={260} height={263} data={props.data}
+      <LineChart width={258} height={263} data={props.data}
         margin={{  top:0,right: 0, left: 5, bottom: 5 }}>
-        <XAxis dataKey="day" stroke="white" axisLine={false} tickLine={false}/>
+        <XAxis dataKey="day" stroke="white" axisLine={false} tickLine={false} fontSize={12}/>
         <YAxis hide={true} />
-        <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor/>}/>
+        <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor/>} />
         <Legend align='left' verticalAlign='top' iconSize={0} wrapperStyle={{
         marginLeft: "29px", marginTop: "44px"  , paddingBottom: "59px", width: "157px" , fontSize: "15px" }}/>
         <Line name ='Durée moyenne des sessions' type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} activeDot={<CustomizedActiveDot />} marginTop={80}/>

@@ -13,60 +13,68 @@ import Activity from './Activity/Activity';
 import AverageSessions from './AverageSessions/AverageSessions';
 import Performance from './Performance/Performance';
 import Score from './Score/Score';
+import NotFound from '../notfound/NotFound';
 
 function Dashboard() {
     const { user } = useGenericInfos();
     const { activity } = useActivity();
     const { averageSessions } = useAverageSessions();
-    const { performance } = usePerformance;
+    const { performance } = usePerformance();
+    const hasError = user.hasError || activity.hasError || averageSessions.hasError || performance.hasError;
 
-    return (
-        <div className='Dashboard'>
-            {user && user.userInfos &&
-                <Welcome firstName={user.userInfos.firstName} />
-            }
-
-            <div className='userActivities'>
-                <div className='charts'>
-                    <div className='activities'>
-                        {activity && activity.sessions &&
-                            <Activity data={activity.sessions} />
-                        }
-                    </div>
-                    <Spacer height={24}/>
-                    <div className='averagePerformanceScore'>
-                        <div className='averageSessions'>
-                            {averageSessions && averageSessions.sessions &&
-                                <AverageSessions data={averageSessions.sessions} dayName={averageSessions.sessions.day} />
-                            }
-                        </div>
-                        <div className='performance'>
-                            {performance && performance.data &&
-                                <Performance data={performance.data} kind={performance.data.kind} value={performance.data.value} />
-                            }
-                        </div>
-                        <div className='score'>
-                            {user && user.userInfos &&
-                                <Score  score={user.score}/>
-                            }
-                        </div>
-                    </div>
-
-
-                </div>
-                {user && user.keyData &&
-                    <div>
-                        <Calories value={user.keyData.calorieCount} />
-                        <Spacer height={39} />
-                        <Proteines value={user.keyData.proteinCount} />
-                        <Spacer height={39} />
-                        <Glucides value={user.keyData.carbohydrateCount} />
-                        <Spacer height={39} />
-                        <Lipides value={user.keyData.lipidCount} />
-                    </div>
+    if (hasError) {
+        return <NotFound />
+    } else {
+        return (
+            <div className='Dashboard'>
+                {user && !user.isLoading &&
+                    <Welcome name={user.getName()} />
                 }
+
+                <div className='userActivities'>
+                    <div className='charts'>
+                        <div className='activities'>
+                            {activity && activity.sessions &&
+                                <Activity data={activity.sessions} />
+                            }
+                        </div>
+                        <Spacer height={24} />
+                        <div className='averagePerformanceScore'>
+                            <div className='averageSessions'>
+                                {averageSessions && averageSessions.sessions &&
+                                    <AverageSessions data={averageSessions.sessions} dayName={averageSessions.sessions.day} />
+                                }
+                            </div>
+                            <div className='performance'>
+                                {performance && performance.data &&
+                                    <Performance data={performance.data} />
+                                }
+
+
+                            </div>
+                            <div className='score'>
+                                {user && !user.isLoading &&
+                                    <Score score={user.getScore()} />
+                                }
+                            </div>
+                        </div>
+
+
+                    </div>
+                    {user && !user.isLoading &&
+                        <div>
+                            <Calories value={user.getCalorie()} />
+                            <Spacer height={39} />
+                            <Proteines value={user.getProtein()} />
+                            <Spacer height={39} />
+                            <Glucides value={user.getCarbohydrate()} />
+                            <Spacer height={39} />
+                            <Lipides value={user.getLipid()} />
+                        </div>
+                    }
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 export default Dashboard;
