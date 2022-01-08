@@ -21,16 +21,16 @@ function Dashboard() {
     const { averageSessions } = useAverageSessions();
     const { performance } = usePerformance();
     const hasError = user.hasError || activity.hasError || averageSessions.hasError || performance.hasError;
+    const isLoading = user.isLoading || activity.isLoading || averageSessions.isLoading || performance.isLoading;
 
     if (hasError) {
         return <NotFound />
+    } else if (isLoading) {
+        return null;
     } else {
         return (
             <div className='Dashboard'>
-                {user && !user.isLoading &&
-                    <Welcome name={user.getName()} />
-                }
-
+                <Welcome name={user.getName()} />
                 <div className='userActivities'>
                     <div className='charts'>
                         <div className='activities'>
@@ -53,25 +53,20 @@ function Dashboard() {
 
                             </div>
                             <div className='score'>
-                                {user && !user.isLoading &&
-                                    <Score score={user.getScore()} />
-                                }
+                                <Score data={user.getScoreChartData()} />
                             </div>
                         </div>
-
-
                     </div>
-                    {user && !user.isLoading &&
-                        <div>
-                            <Calories value={user.getCalorie()} />
-                            <Spacer height={39} />
-                            <Proteines value={user.getProtein()} />
-                            <Spacer height={39} />
-                            <Glucides value={user.getCarbohydrate()} />
-                            <Spacer height={39} />
-                            <Lipides value={user.getLipid()} />
-                        </div>
-                    }
+                    <div>
+                        <Calories value={user.getCalorie()} />
+                        <Spacer height={39} />
+                        <Proteines value={user.getProtein()} />
+                        <Spacer height={39} />
+                        <Glucides value={user.getCarbohydrate()} />
+                        <Spacer height={39} />
+                        <Lipides value={user.getLipid()} />
+                    </div>
+
                 </div>
             </div>
         );

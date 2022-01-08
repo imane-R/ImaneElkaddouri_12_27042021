@@ -7,8 +7,7 @@ const SERVER = axios.create({
 });
 
 let useGenericInfos = () => {
-    let intUser;
-    intUser = new User();
+    let intUser = new User();
     intUser.setLoading(true);
     const [user, setUser] = useState(intUser);
     const { id } = useParams();

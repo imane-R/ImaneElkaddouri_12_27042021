@@ -1,5 +1,5 @@
 class User {
-    constructor (id , userInfos, score, keyData) {
+    constructor(id, userInfos, score, keyData) {
         this.id = id;
         this.userInfos = userInfos;
         this.score = score;
@@ -13,8 +13,12 @@ class User {
         return this.userInfos.getName();
     }
 
-    getScore() {
-        return this.score;
+    getScoreChartData() {
+        return [{
+            value: this.score
+        }, {
+            value: 1 - this.score
+        }];
     }
 
     getCalorie() {
@@ -25,17 +29,17 @@ class User {
         return this.keyData.getProtein()
 
     }
-    getCarbohydrate (){
+    getCarbohydrate() {
         return this.keyData.getCarbohydrate()
 
     }
-    getLipid () {
+    getLipid() {
         return this.keyData.getLipid()
     }
 }
 
 class UserInfos {
-    constructor (firstName, lastName, age) {
+    constructor(firstName, lastName, age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -46,7 +50,7 @@ class UserInfos {
 }
 
 class KeyData {
-    constructor (calorieCount, proteinCount, carbohydrateCount, lipidCount) {
+    constructor(calorieCount, proteinCount, carbohydrateCount, lipidCount) {
         this.calorieCount = calorieCount;
         this.proteinCount = proteinCount;
         this.carbohydrateCount = carbohydrateCount;
@@ -61,13 +65,13 @@ class KeyData {
         return this.proteinCount;
 
     }
-    getCarbohydrate (){
+    getCarbohydrate() {
         return this.carbohydrateCount;
 
     }
-    getLipid () {
+    getLipid() {
         return this.lipidCount;
     }
 }
 
-export {User, UserInfos, KeyData};
+export { User, UserInfos, KeyData };
