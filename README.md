@@ -10,10 +10,8 @@
 
 - [React](https://reactjs.org/)
 - [react-router-dom](https://reactrouter.com/web/guides/quick-start)
-- [recharts](https://recharts.org/en-US/)
-- [styled-components](https://styled-components.com/)
+- [recharts](https://recharts.org/en-US/
 - [axios](https://axios-http.com/)
-- [prop-types](https://github.com/facebook/prop-types)
 - Recommended text editor: [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Installation
