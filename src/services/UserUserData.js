@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from "axios";
 import { User, UserInfos, KeyData } from '../model/User';
+import { Activity, Session } from '../model/Activity';
+import { AverageSessions, SessionOfAverage } from '../model/AverageSessions';
+import {Performance , DataOfPerformance} from '../model/Performance'
 const SERVER = axios.create({
     baseURL: 'http://localhost:3000/'
 });
@@ -34,18 +37,18 @@ let useGenericInfos = () => {
 
 
 let useActivity = () => {
-    const [activity, setActivity] = useState({});
+    let initActivity = new Activity();
+    initActivity.setLoading(true);
+    const [activity, setActivity] = useState(initActivity);
     const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async (id) => {
             try {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}/activity`);
-                response.sessions = response.sessions.map((session, index) => {
-                    session.index = index + 1;
-                    return session;
-                });
-                setActivity(response);
+                const sessions = response.sessions.map((session) => new Session(session.day, session.kilogram, session.calories));
+                let activity = new Activity(response.userId, sessions);
+                setActivity(activity);
             } catch (error) {
                 setActivity({ hasError: true });
             }
@@ -58,18 +61,17 @@ let useActivity = () => {
 }
 
 let useAverageSessions = () => {
-    const [averageSessions, setAverageSessions] = useState({});
+    let initAverageSessions = new AverageSessions();
+    initAverageSessions.setLoading(true);
+    const [averageSessions, setAverageSessions] = useState(initAverageSessions);
     const { id } = useParams();
     useEffect(() => {
         const fetchData = async (id) => {
             try {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}/average-sessions`);
-                let daysName = ['L', 'M', 'M', 'J', 'v', 'S', 'D'];
-                response.sessions = response.sessions.map((session) => {
-                    session.day = daysName[session.day - 1];
-                    return session
-                });
-                setAverageSessions(response);
+                const sessions = response.sessions.map((session) => new SessionOfAverage(session.day, session.sessionLength));
+                let averageSessions = new AverageSessions(response.userId, sessions);
+                setAverageSessions(averageSessions);
             } catch (error) {
                 setAverageSessions({ hasError: true });
             }
@@ -82,17 +84,18 @@ let useAverageSessions = () => {
 }
 
 let usePerformance = () => {
-    const [performance, setPerformance] = useState({});
+    let initPerformance = new Performance();
+    initPerformance.setLoading(true);
+    const [performance, setPerformance] = useState(initPerformance);
     const { id } = useParams();
     useEffect(() => {
         const fetchData = async (id) => {
             try {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}/performance`);
-                response.data = response.data.map((performance) => {
-                    performance.kind = response.kind[performance.kind];
-                    return performance;
-                });
-                setPerformance(response);
+                const data = response.data.map((performance) => new DataOfPerformance (performance.value, response.kind[performance.kind]));
+                let performance = new Performance(response.userId, data)
+                console.log(performance)
+                setPerformance(performance);
             } catch (error) {
                 setPerformance({ hasError: true });
             }

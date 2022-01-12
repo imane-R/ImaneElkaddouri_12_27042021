@@ -34,23 +34,15 @@ function Dashboard() {
                 <div className='userActivities'>
                     <div className='charts'>
                         <div className='activities'>
-                            {activity && activity.sessions &&
-                                <Activity data={activity.sessions} />
-                            }
+                                <Activity data={activity.getSessionChartData()} />
                         </div>
                         <Spacer height={24} />
                         <div className='averagePerformanceScore'>
                             <div className='averageSessions'>
-                                {averageSessions && averageSessions.sessions &&
-                                    <AverageSessions data={averageSessions.sessions} dayName={averageSessions.sessions.day} />
-                                }
+                                    <AverageSessions data={averageSessions.getAverageSessionChartData()} />
                             </div>
                             <div className='performance'>
-                                {performance && performance.data &&
-                                    <Performance data={performance.data} />
-                                }
-
-
+                                    <Performance data={performance.getPerformanceChartData()} />
                             </div>
                             <div className='score'>
                                 <Score data={user.getScoreChartData()} />
