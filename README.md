@@ -26,7 +26,7 @@
 
 2. Clone this repository
    ```sh
-   git clone https://github.com/FlorysiakSimon/SportSee
+   git clone https://github.com/imane-R/imaneelkaddouri_12_27042021.git
    ```
 3. Install NPM packages
    ```sh
