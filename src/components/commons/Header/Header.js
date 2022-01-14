@@ -2,6 +2,11 @@ import logo from './logo.png'
 import { Link } from 'react-router-dom';
 import './Header.css';
 
+
+ /**
+ * create the header of all pages
+ * @return {JSX}  
+ */   
 function Header() {
     return <header>
         <div>

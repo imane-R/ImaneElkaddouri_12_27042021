@@ -15,6 +15,10 @@ import Performance from './Performance/Performance';
 import Score from './Score/Score';
 import NotFound from '../notfound/NotFound';
 
+/**Render the dashboard page
+ * @return {JSX}
+*/
+
 function Dashboard() {
     const { user } = useGenericInfos();
     const { activity } = useActivity();

@@ -1,5 +1,6 @@
 import './AverageSessions.css';
 import { LineChart, XAxis, YAxis, Tooltip, Line, Rectangle, Legend} from 'recharts';
+import PropTypes from 'prop-types';
 
 const CustomTooltip = ({ active, payload, }) => {
   if (active && payload && payload.length) {
@@ -37,11 +38,16 @@ const CustomizedCursor = props => {
   return <Rectangle fill="#000000" opacity="0.198345" x={x} y={y} width={width} height={300}  />;
 };
 
+/**
+ * Create a LineChart with average sessions Data
+ * @param data
+ * @return {JSX}
+ */
 
-function AverageSessions(props) {
+function AverageSessions({data}) {
   return (
     <div className='AverageSessions'>
-      <LineChart width={258} height={263} data={props.data}
+      <LineChart width={258} height={263} data={data}
         margin={{  top:0,right: 0, left: 5, bottom: 5 }}>
         <XAxis dataKey="day" stroke="white" axisLine={false} tickLine={false} fontSize={12}/>
         <YAxis hide={true} />
@@ -53,4 +59,7 @@ function AverageSessions(props) {
     </div>
   )
 }
+AverageSessions.propTypes = {
+  data : PropTypes.array
+};
 export default AverageSessions 

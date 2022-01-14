@@ -4,6 +4,7 @@ class Performance {
         this.data = data
         this.isLoading = false;
     }
+    
     setLoading(loading) {
         this.isLoading = loading;
     }
@@ -14,14 +15,17 @@ class Performance {
 }
 
 class DataOfPerformance {
-    constructor(value, kind){
+    constructor(value, kind) {
         this.value = value;
-        this.kind = kind;   }
-    getValue(){
+        this.kind = kind;
+    }
+
+    getValue() {
         return this.value;
     }
-    getKind(){
+
+    getKind() {
         return this.kind
     }
 }
-export {Performance , DataOfPerformance}
+export { Performance, DataOfPerformance }

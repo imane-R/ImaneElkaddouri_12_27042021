@@ -9,6 +9,11 @@ const SERVER = axios.create({
     baseURL: 'http://localhost:3000/'
 });
 
+/**
+ * Get use Generic Infos
+ * @return {User} user
+ */
+
 let useGenericInfos = () => {
     let intUser = new User();
     intUser.setLoading(true);
@@ -34,8 +39,10 @@ let useGenericInfos = () => {
     };
 }
 
-
-
+/**
+ * Get user activity
+ * @returns {Activity} activity
+ */
 let useActivity = () => {
     let initActivity = new Activity();
     initActivity.setLoading(true);
@@ -60,6 +67,11 @@ let useActivity = () => {
     };
 }
 
+/**
+ * Get user average Sessions
+ * @returns {AverageSessions} averageSessions
+ */
+
 let useAverageSessions = () => {
     let initAverageSessions = new AverageSessions();
     initAverageSessions.setLoading(true);
@@ -83,6 +95,11 @@ let useAverageSessions = () => {
     };
 }
 
+/**
+ * Get user performance
+ * @returns {Performance} performance
+ */
+
 let usePerformance = () => {
     let initPerformance = new Performance();
     initPerformance.setLoading(true);
@@ -94,7 +111,6 @@ let usePerformance = () => {
                 const { data: { data: response } } = await SERVER.get(`/user/${id}/performance`);
                 const data = response.data.map((performance) => new DataOfPerformance (performance.value, response.kind[performance.kind]));
                 let performance = new Performance(response.userId, data)
-                console.log(performance)
                 setPerformance(performance);
             } catch (error) {
                 setPerformance({ hasError: true });

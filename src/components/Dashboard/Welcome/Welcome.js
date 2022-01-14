@@ -1,9 +1,18 @@
-import './Welcome.css'
+import './Welcome.css';
+import PropTypes from 'prop-types';
 
-function Welcome(props) {
+/**
+* Component for showing welcome message.
+* @param name
+* @return {JSX} 
+*/ 
+function Welcome({name}) {
     return <div className="Welcome">
-        <h1 className="welcomeName"> Bonjour <span className="nameColor">{props.name}</span></h1>
+        <h1 className="welcomeName"> Bonjour <span className="nameColor">{name}</span></h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
     </div>
 }
+Welcome.propTypes = {
+    name : PropTypes.string
+};
 export default Welcome

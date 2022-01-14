@@ -4,6 +4,11 @@ import CyclingIcon from './cyclingIcon.png'
 import swimmingIcon from './SwimmingIcon.png'
 import YogaIcon from './YogaIcon.png'
 
+/**
+ * create the side bar of all pages 
+ * @return {JSX} 
+ */ 
+
 function SideBar() {
     return <aside>
         <div className='icons'>

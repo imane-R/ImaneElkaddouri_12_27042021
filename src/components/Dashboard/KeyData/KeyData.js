@@ -1,24 +1,33 @@
 import './KeyData.css'
 import PropTypes from 'prop-types';
 
-function KeyData(props) {
+/**
+ * create genirec component for averages  
+ * @param  value
+ * @param  alt
+ * @param  logo
+ * @param  unit
+ * @param  title
+ * @return {JSX}
+ */  
+
+function KeyData({logo, alt, value, unit, title}) {
     return <div className="KeyData">
         <div className='Logo'>
-            <img className='logo' src={props.logo} alt={props.alt} />
+            <img className='logo' src={logo} alt={alt} />
         </div>
         <div className='valueTitle'>
-            <div className='value' >{props.value}{props.unit}</div>
-            <div className='title'>{props.title}</div>
+            <div className='value' >{value}{unit}</div>
+            <div className='title'>{title}</div>
         </div>
     </div>
 }
-
 KeyData.propTypes = {
-    logo: PropTypes.string,
     alt: PropTypes.string,
+    logo: PropTypes.string,
+    value: PropTypes.number,
     unit: PropTypes.string,
-    title: PropTypes.string,
-    value: PropTypes.number
+    title: PropTypes.string
 }
-
 export default KeyData
+
