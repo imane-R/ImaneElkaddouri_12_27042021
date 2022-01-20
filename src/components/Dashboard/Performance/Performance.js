@@ -17,7 +17,6 @@ function Performance({data}) {
         <Radar  dataKey="value"  fill="#FF0101" fillOpacity={0.6} />
       </RadarChart>
     </div>
-
   );
 }
 Performance.propTypes = {

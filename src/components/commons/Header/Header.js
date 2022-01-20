@@ -5,7 +5,7 @@ import './Header.css';
 
  /**
  * create the header of all pages
- * @return {JSX}  
+ *  
  */   
 function Header() {
     return <header>

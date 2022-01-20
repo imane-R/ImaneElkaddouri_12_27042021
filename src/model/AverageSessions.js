@@ -1,3 +1,4 @@
+
 const DAYS_NAME = ['L', 'M', 'M', 'J', 'v', 'S', 'D'];
 
 class AverageSessions {

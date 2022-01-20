@@ -54,7 +54,8 @@ function AverageSessions({data}) {
         <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor/>} />
         <Legend align='left' verticalAlign='top' iconSize={0} wrapperStyle={{
         marginLeft: "29px", marginTop: "44px"  , paddingBottom: "59px", width: "157px" , fontSize: "15px" }}/>
-        <Line name ='Durée moyenne des sessions' type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} activeDot={<CustomizedActiveDot />} marginTop={80}/>
+        <Line name ='Durée moyenne des sessions' type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} 
+        activeDot={<CustomizedActiveDot />} marginTop={80}/>
       </LineChart>
     </div>
   )
