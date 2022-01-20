@@ -12,7 +12,7 @@ import Spacer from '../commons/Spacer/Spacer';
 import Activity from './Activity/Activity';
 import AverageSessions from './AverageSessions/AverageSessions';
 import Performance from './Performance/Performance';
-import Score from './Score/Score';
+import Score from './Activity/Score/Score';
 import NotFound from '../notfound/NotFound';
 
 /**Render the dashboard page
